@@ -14,10 +14,10 @@ class CurtainSideBarConfig {
     this.duration = _kSideBarDuration,
     this.headerBuilder,
     this.backgroundColor = Colors.white,
-    this.itemsBackgroundColor = Colors.white,
-    this.itemsSelectedBackgroundColor = Colors.green,
-    this.itemsSpacing = 15,
-    this.selectedItemXOffset = 10,
+    this.actionsBackgroundColor = Colors.white,
+    this.actionsSelectedBackgroundColor = Colors.green,
+    this.actionsSpacing = 15,
+    this.selectedActionXOffset = 10,
   })  : assert(width != null, 'width must not be null'),
         assert(expandWidth != null, 'expandWidth must not be null'),
         assert(expandWidth > width, 'expandWidth should be greater than width'),
@@ -47,25 +47,25 @@ class CurtainSideBarConfig {
   /// defaults to [Colors.white].
   final Color backgroundColor;
 
-  /// [CurtainSideBar] items background color when it is not selected.
+  /// [CurtainSideBar] actions background color when it is not selected.
   ///
   /// defaults to [Colors.white]
-  final Color itemsBackgroundColor;
+  final Color actionsBackgroundColor;
 
-  /// [CurtainSideBar] items background color when it is selected.
+  /// [CurtainSideBar] actions background color when it is selected.
   ///
   /// defaults to [Colors.white]
-  final Color itemsSelectedBackgroundColor;
+  final Color actionsSelectedBackgroundColor;
 
-  /// Spacing between the items of the [CurtainSideBar].
+  /// Spacing between the actions of the [CurtainSideBar].
   ///
   /// defaults to 15.
-  final double itemsSpacing;
+  final double actionsSpacing;
 
   /// Selected Item edge X offset.
   ///
   /// defaults to 10.
-  final double selectedItemXOffset;
+  final double selectedActionXOffset;
 }
 
 class ScaffoldConfig {

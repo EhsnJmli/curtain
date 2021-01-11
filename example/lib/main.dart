@@ -81,12 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final pageTextStyle = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
     final headerTextStyle = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
-    final itemTextStyle = TextStyle(fontSize: 16);
+    final actionTextStyle = TextStyle(fontSize: 16);
     return Curtain(
         extendBody: true,
         initialPage: 1,
         curtainSideBarConfig: CurtainSideBarConfig(
-          selectedItemXOffset: 10,
+          selectedActionXOffset: 10,
           headerBuilder: (isExpand, page) => Container(
             padding: const EdgeInsets.only(top: 32),
             child: isExpand
@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(getIcon(page)),
               text: Text(
                 getText(page),
-                style: itemTextStyle,
+                style: actionTextStyle,
               ),
             ),
           ),

@@ -75,8 +75,8 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                     AnimatedContainer(
                       curve: Curves.easeIn,
                       margin: EdgeInsets.only(
-                          left: isLtr ? 0 : _config.selectedItemXOffset ?? 0,
-                          right: isLtr ? _config.selectedItemXOffset ?? 0 : 0),
+                          left: isLtr ? 0 : _config.selectedActionXOffset ?? 0,
+                          right: isLtr ? _config.selectedActionXOffset ?? 0 : 0),
                       duration: _config.duration,
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -96,8 +96,8 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                       if (_config.headerBuilder != null)
                         Padding(
                           padding: EdgeInsets.only(
-                              left: isLtr ? 0 : _config.selectedItemXOffset ?? 0,
-                              right: isLtr ? _config.selectedItemXOffset ?? 0 : 0),
+                              left: isLtr ? 0 : _config.selectedActionXOffset ?? 0,
+                              right: isLtr ? _config.selectedActionXOffset ?? 0 : 0),
                           child: _config.headerBuilder(isExpand, widget.index),
                         ),
                       Column(
@@ -118,7 +118,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                                 Navigator.pop(context);
                             },
                           );
-                        }).space(_config.itemsSpacing ?? 0, Axis.vertical),
+                        }).space(_config.actionsSpacing ?? 0, Axis.vertical),
                       ),
                     ],
                   ),
@@ -160,13 +160,13 @@ class _SideBarActionWidget extends StatelessWidget {
     textStyle = textStyle == null
         ? TextStyle(
             color: isSelected
-                ? item.selectedColor ?? sideBarConfig.itemsBackgroundColor
-                : item.color ?? sideBarConfig.itemsSelectedBackgroundColor,
+                ? item.selectedColor ?? sideBarConfig.actionsBackgroundColor
+                : item.color ?? sideBarConfig.actionsSelectedBackgroundColor,
           )
         : textStyle.copyWith(
             color: isSelected
-                ? item.selectedColor ?? sideBarConfig.itemsBackgroundColor
-                : item.color ?? sideBarConfig.itemsSelectedBackgroundColor,
+                ? item.selectedColor ?? sideBarConfig.actionsBackgroundColor
+                : item.color ?? sideBarConfig.actionsSelectedBackgroundColor,
           );
     final text = Text(
       givenText.data,
@@ -189,8 +189,8 @@ class _SideBarActionWidget extends StatelessWidget {
       key: givenIcon.key,
       textDirection: givenIcon.textDirection,
       color: isSelected
-          ? item.selectedColor ?? sideBarConfig.itemsBackgroundColor
-          : item.color ?? sideBarConfig.itemsSelectedBackgroundColor,
+          ? item.selectedColor ?? sideBarConfig.actionsBackgroundColor
+          : item.color ?? sideBarConfig.actionsSelectedBackgroundColor,
       size: givenIcon.size,
       semanticLabel: givenIcon.semanticLabel,
     );
@@ -202,8 +202,8 @@ class _SideBarActionWidget extends StatelessWidget {
         child: Container(
           height: item.height,
           margin: EdgeInsets.only(
-            right: isLtr ? (isTablet || isSelected ? 0 : sideBarConfig.selectedItemXOffset ?? 0) : 0,
-            left: isLtr ? 0 : (isTablet || isSelected ? 0 : sideBarConfig.selectedItemXOffset ?? 0),
+            right: isLtr ? (isTablet || isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) : 0,
+            left: isLtr ? 0 : (isTablet || isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0),
           ),
           decoration: BoxDecoration(
             borderRadius: !isTablet && isSelected
@@ -215,7 +215,7 @@ class _SideBarActionWidget extends StatelessWidget {
                       bottomRight: isLtr ? Radius.circular(6) : Radius.zero,
                     )
                 : BorderRadius.zero,
-            color: isSelected ? sideBarConfig.itemsSelectedBackgroundColor : sideBarConfig.itemsBackgroundColor,
+            color: isSelected ? sideBarConfig.actionsSelectedBackgroundColor : sideBarConfig.actionsBackgroundColor,
           ),
           child: AnimatedContainer(
             duration: sideBarConfig.duration,
@@ -224,12 +224,12 @@ class _SideBarActionWidget extends StatelessWidget {
               children: [
                 SizedBox(
                   width:
-                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedItemXOffset ?? 0) - iconSize) / 2,
+                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) / 2,
                 ),
                 icon,
                 SizedBox(
                   width:
-                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedItemXOffset ?? 0) - iconSize) / 2,
+                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) / 2,
                 ),
                 Expanded(
                   child: AnimatedOpacity(

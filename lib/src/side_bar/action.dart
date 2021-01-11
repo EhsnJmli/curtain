@@ -23,13 +23,13 @@ class CurtainAction {
 
   /// Icon and text color when action is not selected.
   ///
-  /// When its value sets on null it will use the [itemsBackgroundColor]
+  /// When its value sets on null it will use the [actionsBackgroundColor]
   /// which defined in [CurtainSideBarConfig] as its default value.
   final Color color;
 
   /// Icon and text color when action is selected.
   ///
-  /// When its value sets on null it will use the [itemsSelectedBackgroundColor]
+  /// When its value sets on null it will use the [actionsSelectedBackgroundColor]
   /// which defined in [CurtainSideBarConfig] as its default value.
   final Color selectedColor;
 

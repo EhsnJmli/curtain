@@ -28,9 +28,9 @@ class Curtain extends StatefulWidget {
   /// Initial page of the curtain.
   final int initialPage;
 
-  /// If true, page will be extend under the edge of the selected item if its not zero.
+  /// If true, page will be extend under the edge of the selected action if its not zero.
   ///
-  /// You can define offset of the edge of selected item in [selectedItemXOffset] in [CurtainSideBarConfig].
+  /// You can define offset of the edge of selected action in [selectedActionXOffset] in [CurtainSideBarConfig].
   ///
   /// defaults to false.
   final bool extendBody;
@@ -87,7 +87,7 @@ class _CurtainState extends State<Curtain> {
         final isMobile = constraints.maxWidth < 400;
         final persistentWidget = widget.scaffoldConfig.persistentWidget;
         final sideBarWidth =
-            _curtainSideBarConfig.width - (widget.extendBody ? _curtainSideBarConfig.selectedItemXOffset ?? 0 : 0);
+            _curtainSideBarConfig.width - (widget.extendBody ? _curtainSideBarConfig.selectedActionXOffset ?? 0 : 0);
         return Scaffold(
           appBar: isTablet
               ? _config.mobileAppBar ??
