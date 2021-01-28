@@ -24,21 +24,21 @@ class CurtainSideBarConfig {
         assert(duration != null, 'duration must not be null');
 
   /// Default width of [CurtainSideBar] when its not hovered.
-  /// 
+  ///
   /// defaults to [_kSideBarWidth].
   final double width;
-  
-  /// Width of [CurtainSideBar] when it's Hovered on screens with width more than 700 
+
+  /// Width of [CurtainSideBar] when it's Hovered on screens with width more than 700
   /// and width on drawer on screens with width lower than 700.
-  /// 
+  ///
   /// defaults to [_kSideBarExpandWidth].
   final double expandWidth;
-  
+
   /// [CurtainSideBar] expand and shrink duration.
-  /// 
+  ///
   /// defaults to [_kSideBarDuration].
   final Duration duration;
-  
+
   /// Builds header for the [CurtainSideBar].
   final Widget Function(bool isExpand, int page) headerBuilder;
 

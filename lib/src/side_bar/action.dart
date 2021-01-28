@@ -9,7 +9,7 @@ class CurtainAction {
     this.color,
     this.selectedColor,
     this.height = 50,
-    this.borderRadius ,
+    this.borderRadius,
   })  : assert(icon != null),
         assert(text != null),
         assert(height != null);

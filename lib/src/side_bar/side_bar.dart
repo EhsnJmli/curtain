@@ -114,8 +114,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                             isSelected: widget.index == index,
                             onClick: () {
                               widget.changeIndex(index);
-                              if(isTablet)
-                                Navigator.pop(context);
+                              if (isTablet) Navigator.pop(context);
                             },
                           );
                         }).space(_config.actionsSpacing ?? 0, Axis.vertical),
@@ -224,12 +223,14 @@ class _SideBarActionWidget extends StatelessWidget {
               children: [
                 SizedBox(
                   width:
-                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) / 2,
+                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) /
+                          2,
                 ),
                 icon,
                 SizedBox(
                   width:
-                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) / 2,
+                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) /
+                          2,
                 ),
                 Expanded(
                   child: AnimatedOpacity(
