@@ -8,7 +8,12 @@ import 'package:flutter/rendering.dart';
 import '../utils/extensions.dart';
 
 class CurtainSideBar extends StatefulWidget {
-  const CurtainSideBar({this.config, this.index, this.changeIndex, this.actions, this.direction});
+  const CurtainSideBar(
+      {this.config,
+      this.index,
+      this.changeIndex,
+      this.actions,
+      this.direction});
 
   /// Function to change index of the page when click happens in one item.
   final void Function(int index) changeIndex;
@@ -76,7 +81,8 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                       curve: Curves.easeIn,
                       margin: EdgeInsets.only(
                           left: isLtr ? 0 : _config.selectedActionXOffset ?? 0,
-                          right: isLtr ? _config.selectedActionXOffset ?? 0 : 0),
+                          right:
+                              isLtr ? _config.selectedActionXOffset ?? 0 : 0),
                       duration: _config.duration,
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -96,8 +102,12 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                       if (_config.headerBuilder != null)
                         Padding(
                           padding: EdgeInsets.only(
-                              left: isLtr ? 0 : _config.selectedActionXOffset ?? 0,
-                              right: isLtr ? _config.selectedActionXOffset ?? 0 : 0),
+                              left: isLtr
+                                  ? 0
+                                  : _config.selectedActionXOffset ?? 0,
+                              right: isLtr
+                                  ? _config.selectedActionXOffset ?? 0
+                                  : 0),
                           child: _config.headerBuilder(isExpand, widget.index),
                         ),
                       Column(
@@ -201,8 +211,16 @@ class _SideBarActionWidget extends StatelessWidget {
         child: Container(
           height: item.height,
           margin: EdgeInsets.only(
-            right: isLtr ? (isTablet || isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) : 0,
-            left: isLtr ? 0 : (isTablet || isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0),
+            right: isLtr
+                ? (isTablet || isSelected
+                    ? 0
+                    : sideBarConfig.selectedActionXOffset ?? 0)
+                : 0,
+            left: isLtr
+                ? 0
+                : (isTablet || isSelected
+                    ? 0
+                    : sideBarConfig.selectedActionXOffset ?? 0),
           ),
           decoration: BoxDecoration(
             borderRadius: !isTablet && isSelected
@@ -214,7 +232,9 @@ class _SideBarActionWidget extends StatelessWidget {
                       bottomRight: isLtr ? Radius.circular(6) : Radius.zero,
                     )
                 : BorderRadius.zero,
-            color: isSelected ? sideBarConfig.actionsSelectedBackgroundColor : sideBarConfig.actionsBackgroundColor,
+            color: isSelected
+                ? sideBarConfig.actionsSelectedBackgroundColor
+                : sideBarConfig.actionsBackgroundColor,
           ),
           child: AnimatedContainer(
             duration: sideBarConfig.duration,
@@ -222,15 +242,21 @@ class _SideBarActionWidget extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(
-                  width:
-                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) /
-                          2,
+                  width: (sideBarConfig.width -
+                          (isSelected
+                              ? 0
+                              : sideBarConfig.selectedActionXOffset ?? 0) -
+                          iconSize) /
+                      2,
                 ),
                 icon,
                 SizedBox(
-                  width:
-                      (sideBarConfig.width - (isSelected ? 0 : sideBarConfig.selectedActionXOffset ?? 0) - iconSize) /
-                          2,
+                  width: (sideBarConfig.width -
+                          (isSelected
+                              ? 0
+                              : sideBarConfig.selectedActionXOffset ?? 0) -
+                          iconSize) /
+                      2,
                 ),
                 Expanded(
                   child: AnimatedOpacity(

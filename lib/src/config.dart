@@ -79,9 +79,7 @@ class ScaffoldConfig {
     this.floatingActionButtonLocation,
     this.floatingActionButtonAnimator,
     this.persistentFooterButtons,
-    this.onDrawerChanged,
     this.endDrawer,
-    this.onEndDrawerChanged,
     this.drawerScrimColor,
     this.backgroundColor,
     this.bottomSheet,
@@ -144,9 +142,6 @@ class ScaffoldConfig {
   /// [bottomNavigationBar] but below the [body].
   final List<Widget> persistentFooterButtons;
 
-  /// Optional callback that is called when the [Scaffold.drawer] is opened or closed.
-  final DrawerCallback onDrawerChanged;
-
   /// A panel displayed to the side of the [body], often hidden on mobile
   /// devices. Swipes in from right-to-left ([TextDirection.ltr]) or
   /// left-to-right ([TextDirection.rtl])
@@ -206,9 +201,6 @@ class ScaffoldConfig {
   /// ```
   /// {@end-tool}
   final Widget endDrawer;
-
-  /// Optional callback that is called when the [Scaffold.endDrawer] is opened or closed.
-  final DrawerCallback onEndDrawerChanged;
 
   /// The color to use for the scrim that obscures primary content while a drawer is open.
   ///

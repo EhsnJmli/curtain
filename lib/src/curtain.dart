@@ -59,7 +59,8 @@ class _CurtainState extends State<Curtain> {
   void initState() {
     super.initState();
     _config = widget.scaffoldConfig ?? ScaffoldConfig();
-    _curtainSideBarConfig = widget.curtainSideBarConfig ?? CurtainSideBarConfig();
+    _curtainSideBarConfig =
+        widget.curtainSideBarConfig ?? CurtainSideBarConfig();
     pageIndex = widget.initialPage ?? 0;
   }
 
@@ -86,8 +87,10 @@ class _CurtainState extends State<Curtain> {
         final isTablet = constraints.maxWidth < 800;
         final isMobile = constraints.maxWidth < 400;
         final persistentWidget = widget.scaffoldConfig.persistentWidget;
-        final sideBarWidth =
-            _curtainSideBarConfig.width - (widget.extendBody ? _curtainSideBarConfig.selectedActionXOffset ?? 0 : 0);
+        final sideBarWidth = _curtainSideBarConfig.width -
+            (widget.extendBody
+                ? _curtainSideBarConfig.selectedActionXOffset ?? 0
+                : 0);
         return Scaffold(
           appBar: isTablet
               ? _config.mobileAppBar ??
@@ -119,7 +122,9 @@ class _CurtainState extends State<Curtain> {
                             child: persistentWidget.child,
                           ),
                         Positioned.fill(
-                          child: widget.items.map((item) => item.page).toList()[pageIndex],
+                          child: widget.items
+                              .map((item) => item.page)
+                              .toList()[pageIndex],
                         ),
                       ],
                     ),
@@ -140,9 +145,8 @@ class _CurtainState extends State<Curtain> {
           drawerEnableOpenDragGesture: _config.drawerEnableOpenDragGesture,
           drawerScrimColor: _config.drawerScrimColor,
           endDrawer: _config.endDrawer,
-          endDrawerEnableOpenDragGesture: _config.endDrawerEnableOpenDragGesture,
-          onDrawerChanged: _config.onDrawerChanged,
-          onEndDrawerChanged: _config.onEndDrawerChanged,
+          endDrawerEnableOpenDragGesture:
+              _config.endDrawerEnableOpenDragGesture,
           key: _config.key,
           floatingActionButton: _config.floatingActionButton,
           floatingActionButtonLocation: _config.floatingActionButtonLocation,

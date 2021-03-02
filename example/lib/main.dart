@@ -80,7 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final pageTextStyle = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
-    final headerTextStyle = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
+    final headerTextStyle =
+        TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
     final actionTextStyle = TextStyle(fontSize: 16);
     return Curtain(
         extendBody: true,

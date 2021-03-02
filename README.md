@@ -1,5 +1,5 @@
 # Curtain
-A flutter dynamic responsive dashboard, easy to use and completely costumizable.
+A flutter dynamic responsive dashboard, easy to use and completely customizable.
 
 <img src="https://i.imgur.com/gPsrnso.gif" width="550" height="450">
 <img src="https://i.imgur.com/BlTmCyF.gif" width="300" height="500">
