@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class CurtainItem {
   const CurtainItem({
-    @required this.page,
-    @required this.action,
-  }) : assert(page != null && action != null);
+    required this.page,
+    required this.action,
+  });
 
   /// Displayed page when its [action] selected.
   final Widget page;

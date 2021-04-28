@@ -1,4 +1,8 @@
-# [0.0.2]
+# [0.1.0]
+
+* Migrate to null-safety
+
+## [0.0.2]
 
 * Remove `onDrawerChanged` and `onEndDrawerChanged` parameters from `ScaffoldConfig`
 

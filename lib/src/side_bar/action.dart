@@ -4,15 +4,13 @@ import 'package:flutter/material.dart';
 
 class CurtainAction {
   const CurtainAction({
-    @required this.icon,
-    @required this.text,
+    required this.icon,
+    required this.text,
     this.color,
     this.selectedColor,
     this.height = 50,
     this.borderRadius,
-  })  : assert(icon != null),
-        assert(text != null),
-        assert(height != null);
+  });
 
   /// Displayed icon of the action.
   final Icon icon;
@@ -25,13 +23,13 @@ class CurtainAction {
   ///
   /// When its value sets on null it will use the [actionsBackgroundColor]
   /// which defined in [CurtainSideBarConfig] as its default value.
-  final Color color;
+  final Color? color;
 
   /// Icon and text color when action is selected.
   ///
   /// When its value sets on null it will use the [actionsSelectedBackgroundColor]
   /// which defined in [CurtainSideBarConfig] as its default value.
-  final Color selectedColor;
+  final Color? selectedColor;
 
   /// Height of the action button in the [CurtainSideBar].
   ///
@@ -39,5 +37,5 @@ class CurtainAction {
   final double height;
 
   /// BorderRadius of the action button in the [CurtainSideBar].
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 }

@@ -18,10 +18,7 @@ class CurtainSideBarConfig {
     this.actionsSelectedBackgroundColor = Colors.green,
     this.actionsSpacing = 15,
     this.selectedActionXOffset = 10,
-  })  : assert(width != null, 'width must not be null'),
-        assert(expandWidth != null, 'expandWidth must not be null'),
-        assert(expandWidth > width, 'expandWidth should be greater than width'),
-        assert(duration != null, 'duration must not be null');
+  }) : assert(expandWidth > width, 'expandWidth should be greater than width');
 
   /// Default width of [CurtainSideBar] when its not hovered.
   ///
@@ -40,7 +37,7 @@ class CurtainSideBarConfig {
   final Duration duration;
 
   /// Builds header for the [CurtainSideBar].
-  final Widget Function(bool isExpand, int page) headerBuilder;
+  final Widget Function(bool isExpand, int page)? headerBuilder;
 
   /// [CurtainSideBar] background color.
   ///
@@ -89,14 +86,12 @@ class ScaffoldConfig {
     this.drawerEdgeDragWidth,
     this.drawerEnableOpenDragGesture = true,
     this.endDrawerEnableOpenDragGesture = true,
-  })  : assert(primary != null),
-        assert(extendBodyBehindAppBar != null),
-        assert(drawerDragStartBehavior != null);
+  });
 
   /// Widget which always displayed in all pages.
-  final PersistentWidget persistentWidget;
+  final PersistentWidget? persistentWidget;
 
-  final Key key;
+  final Key? key;
 
   /// If true, and an [mobileAppBar] is specified, then the height of the [body] is
   /// extended to include the height of the app bar and the top of the body
@@ -114,22 +109,22 @@ class ScaffoldConfig {
   final bool extendBodyBehindAppBar;
 
   /// An app bar to display at the top of the scaffold only on tablet and mobile.
-  final PreferredSizeWidget mobileAppBar;
+  final PreferredSizeWidget? mobileAppBar;
 
   /// A button displayed floating above [body], in the bottom right corner.
   ///
   /// Typically a [FloatingActionButton].
-  final Widget floatingActionButton;
+  final Widget? floatingActionButton;
 
   /// Responsible for determining where the [floatingActionButton] should go.
   ///
   /// If null, the [ScaffoldState] will use the default location, [FloatingActionButtonLocation.endFloat].
-  final FloatingActionButtonLocation floatingActionButtonLocation;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
 
   /// Animator to move the [floatingActionButton] to a new [floatingActionButtonLocation].
   ///
   /// If null, the [ScaffoldState] will use the default animator, [FloatingActionButtonAnimator.scaling].
-  final FloatingActionButtonAnimator floatingActionButtonAnimator;
+  final FloatingActionButtonAnimator? floatingActionButtonAnimator;
 
   /// A set of buttons that are displayed at the bottom of the scaffold.
   ///
@@ -140,7 +135,7 @@ class ScaffoldConfig {
   ///
   /// The [persistentFooterButtons] are rendered above the
   /// [bottomNavigationBar] but below the [body].
-  final List<Widget> persistentFooterButtons;
+  final List<Widget>? persistentFooterButtons;
 
   /// A panel displayed to the side of the [body], often hidden on mobile
   /// devices. Swipes in from right-to-left ([TextDirection.ltr]) or
@@ -200,17 +195,17 @@ class ScaffoldConfig {
   /// }
   /// ```
   /// {@end-tool}
-  final Widget endDrawer;
+  final Widget? endDrawer;
 
   /// The color to use for the scrim that obscures primary content while a drawer is open.
   ///
   /// By default, the color is [Colors.black54]
-  final Color drawerScrimColor;
+  final Color? drawerScrimColor;
 
   /// The color of the [Material] widget that underlies the entire Scaffold.
   ///
   /// The theme's [ThemeData.scaffoldBackgroundColor] by default.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// The persistent bottom sheet to display.
   ///
@@ -241,7 +236,7 @@ class ScaffoldConfig {
   ///  * [showBottomSheet], which displays a bottom sheet as a route that can
   ///    be dismissed with the scaffold's back button.
   ///  * [showModalBottomSheet], which displays a modal bottom sheet.
-  final Widget bottomSheet;
+  final Widget? bottomSheet;
 
   /// If true the [body] and the scaffold's floating widgets should size
   /// themselves to avoid the onscreen keyboard whose height is defined by the
@@ -252,7 +247,7 @@ class ScaffoldConfig {
   /// prevents widgets inside the body from being obscured by the keyboard.
   ///
   /// Defaults to true.
-  final bool resizeToAvoidBottomInset;
+  final bool? resizeToAvoidBottomInset;
 
   /// Whether this scaffold is being displayed at the top of the screen.
   ///
@@ -275,7 +270,7 @@ class ScaffoldConfig {
   /// not obscured. For example, if `TextDirection.of(context)` is set to
   /// [TextDirection.ltr], 20.0 will be added to
   /// `MediaQuery.of(context).padding.left`.
-  final double drawerEdgeDragWidth;
+  final double? drawerEdgeDragWidth;
 
   /// Determines if the [Scaffold.drawer] can be opened with a drag
   /// gesture.

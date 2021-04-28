@@ -8,18 +8,19 @@ import 'package:flutter/rendering.dart';
 import '../utils/extensions.dart';
 
 class CurtainSideBar extends StatefulWidget {
-  const CurtainSideBar(
-      {this.config,
-      this.index,
-      this.changeIndex,
-      this.actions,
-      this.direction});
+  const CurtainSideBar({
+    required this.actions,
+    required this.index,
+    required this.changeIndex,
+    required this.direction,
+    this.config,
+  });
 
   /// Function to change index of the page when click happens in one item.
   final void Function(int index) changeIndex;
 
   /// Config of [CurtainSideBar].
-  final CurtainSideBarConfig config;
+  final CurtainSideBarConfig? config;
 
   /// Current index.
   final int index;
@@ -35,8 +36,8 @@ class CurtainSideBar extends StatefulWidget {
 }
 
 class _CurtainSideBarState extends State<CurtainSideBar> {
-  double _width;
-  CurtainSideBarConfig _config;
+  late double _width;
+  late CurtainSideBarConfig _config;
 
   @override
   void initState() {
@@ -80,9 +81,8 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                     AnimatedContainer(
                       curve: Curves.easeIn,
                       margin: EdgeInsets.only(
-                          left: isLtr ? 0 : _config.selectedActionXOffset ?? 0,
-                          right:
-                              isLtr ? _config.selectedActionXOffset ?? 0 : 0),
+                          left: isLtr ? 0 : _config.selectedActionXOffset,
+                          right: isLtr ? _config.selectedActionXOffset : 0),
                       duration: _config.duration,
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -102,13 +102,9 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                       if (_config.headerBuilder != null)
                         Padding(
                           padding: EdgeInsets.only(
-                              left: isLtr
-                                  ? 0
-                                  : _config.selectedActionXOffset ?? 0,
-                              right: isLtr
-                                  ? _config.selectedActionXOffset ?? 0
-                                  : 0),
-                          child: _config.headerBuilder(isExpand, widget.index),
+                              left: isLtr ? 0 : _config.selectedActionXOffset,
+                              right: isLtr ? _config.selectedActionXOffset : 0),
+                          child: _config.headerBuilder!(isExpand, widget.index),
                         ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -127,7 +123,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                               if (isTablet) Navigator.pop(context);
                             },
                           );
-                        }).space(_config.actionsSpacing ?? 0, Axis.vertical),
+                        }).space(_config.actionsSpacing, Axis.vertical),
                       ),
                     ],
                   ),
@@ -141,14 +137,14 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
 
 class _SideBarActionWidget extends StatelessWidget {
   const _SideBarActionWidget({
-    this.item,
-    this.onClick,
-    this.sideBarConfig,
-    this.width,
-    this.isExpand,
-    this.isSelected,
-    this.isTablet,
-    this.direction,
+    required this.item,
+    required this.onClick,
+    required this.sideBarConfig,
+    required this.width,
+    required this.isExpand,
+    required this.isSelected,
+    required this.isTablet,
+    required this.direction,
   });
 
   final VoidCallback onClick;
@@ -178,7 +174,7 @@ class _SideBarActionWidget extends StatelessWidget {
                 : item.color ?? sideBarConfig.actionsSelectedBackgroundColor,
           );
     final text = Text(
-      givenText.data,
+      givenText.data!,
       style: textStyle,
       textDirection: givenText.textDirection,
       textAlign: givenText.textAlign,
@@ -203,7 +199,7 @@ class _SideBarActionWidget extends StatelessWidget {
       size: givenIcon.size,
       semanticLabel: givenIcon.semanticLabel,
     );
-    final iconSize = givenIcon.size ?? IconTheme.of(context).size;
+    final iconSize = givenIcon.size ?? IconTheme.of(context).size!;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -214,13 +210,13 @@ class _SideBarActionWidget extends StatelessWidget {
             right: isLtr
                 ? (isTablet || isSelected
                     ? 0
-                    : sideBarConfig.selectedActionXOffset ?? 0)
+                    : sideBarConfig.selectedActionXOffset)
                 : 0,
             left: isLtr
                 ? 0
                 : (isTablet || isSelected
                     ? 0
-                    : sideBarConfig.selectedActionXOffset ?? 0),
+                    : sideBarConfig.selectedActionXOffset),
           ),
           decoration: BoxDecoration(
             borderRadius: !isTablet && isSelected
@@ -245,7 +241,7 @@ class _SideBarActionWidget extends StatelessWidget {
                   width: (sideBarConfig.width -
                           (isSelected
                               ? 0
-                              : sideBarConfig.selectedActionXOffset ?? 0) -
+                              : sideBarConfig.selectedActionXOffset) -
                           iconSize) /
                       2,
                 ),
@@ -254,7 +250,7 @@ class _SideBarActionWidget extends StatelessWidget {
                   width: (sideBarConfig.width -
                           (isSelected
                               ? 0
-                              : sideBarConfig.selectedActionXOffset ?? 0) -
+                              : sideBarConfig.selectedActionXOffset) -
                           iconSize) /
                       2,
                 ),
