@@ -1,4 +1,8 @@
-# [0.1.0]
+# [0.1.1]
+
+* Added scroll to `CurtainSideBar`
+
+## [0.1.0]
 
 * Migrate to null-safety
 

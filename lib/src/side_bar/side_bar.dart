@@ -97,7 +97,6 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                       ),
                     ),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       if (_config.headerBuilder != null)
                         Padding(
@@ -106,24 +105,37 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                               right: isLtr ? _config.selectedActionXOffset : 0),
                           child: _config.headerBuilder!(isExpand, widget.index),
                         ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: List.generate(widget.actions.length, (index) {
-                          return _SideBarActionWidget(
-                            direction: widget.direction,
-                            item: widget.actions[index],
-                            isTablet: isTablet,
-                            width: _width,
-                            isExpand: isExpand,
-                            sideBarConfig: _config,
-                            isSelected: widget.index == index,
-                            onClick: () {
-                              widget.changeIndex(index);
-                              if (isTablet) Navigator.pop(context);
-                            },
-                          );
-                        }).space(_config.actionsSpacing, Axis.vertical),
+                      Expanded(
+                        child: LayoutBuilder(
+                          builder: (context, innerConstraints) =>
+                              SingleChildScrollView(
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                minHeight: innerConstraints.maxHeight,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.min,
+                                children: List.generate(widget.actions.length,
+                                    (index) {
+                                  return _SideBarActionWidget(
+                                    direction: widget.direction,
+                                    item: widget.actions[index],
+                                    isTablet: isTablet,
+                                    width: _width,
+                                    isExpand: isExpand,
+                                    sideBarConfig: _config,
+                                    isSelected: widget.index == index,
+                                    onClick: () {
+                                      widget.changeIndex(index);
+                                      if (isTablet) Navigator.pop(context);
+                                    },
+                                  );
+                                }).space(_config.actionsSpacing, Axis.vertical),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
