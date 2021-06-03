@@ -1,4 +1,9 @@
-# [0.1.1]
+# [0.1.2]
+
+* Added `pagePadding` parameter to `ScaffoldConfig`
+* Bugs Fixed
+
+## [0.1.1]
 
 * Added scroll to `CurtainSideBar`
 

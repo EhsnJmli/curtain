@@ -86,6 +86,7 @@ class ScaffoldConfig {
     this.drawerEdgeDragWidth,
     this.drawerEnableOpenDragGesture = true,
     this.endDrawerEnableOpenDragGesture = true,
+    this.pagePadding = EdgeInsets.zero,
   });
 
   /// Widget which always displayed in all pages.
@@ -283,4 +284,9 @@ class ScaffoldConfig {
   ///
   /// By default, the drag gesture is enabled.
   final bool endDrawerEnableOpenDragGesture;
+
+  /// Empty space around the pages.
+  ///
+  /// Defaults to EdgeInsets.zero.
+  final EdgeInsets pagePadding;
 }

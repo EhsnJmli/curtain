@@ -111,6 +111,14 @@ class _CurtainState extends State<Curtain> {
                   Expanded(
                     child: Stack(
                       children: [
+                        Positioned.fill(
+                          child: Padding(
+                            padding: _config.pagePadding,
+                            child: widget.items
+                                .map((item) => item.page)
+                                .toList()[pageIndex],
+                          ),
+                        ),
                         if (persistentWidget != null &&
                             ((isMobile && persistentWidget.showInMobile) ||
                                 (isTablet && persistentWidget.showInTablet) ||
@@ -119,11 +127,6 @@ class _CurtainState extends State<Curtain> {
                             alignment: persistentWidget.alignment,
                             child: persistentWidget.child,
                           ),
-                        Positioned.fill(
-                          child: widget.items
-                              .map((item) => item.page)
-                              .toList()[pageIndex],
-                        ),
                       ],
                     ),
                   )
