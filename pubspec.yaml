@@ -1,6 +1,6 @@
 name: curtain
 description: A flutter dynamic responsive dashboard, easy to use and completely costumizable.
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/EhsnJmli/curtain
 
 environment:

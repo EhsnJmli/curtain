@@ -62,6 +62,17 @@ class _CurtainState extends State<Curtain> {
     pageIndex = widget.initialPage;
   }
 
+  @override
+  void didUpdateWidget(covariant Curtain oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.scaffoldConfig != null) {
+      _config = widget.scaffoldConfig!;
+    }
+    if (widget.curtainSideBarConfig != null) {
+      _curtainSideBarConfig = widget.curtainSideBarConfig!;
+    }
+  }
+
   void changeIndex(int index) {
     if (widget.onPageChange != null) widget.onPageChange!(index);
     setState(() {

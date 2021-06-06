@@ -1,4 +1,8 @@
-# [0.1.2]
+# [0.1.3]
+
+* Bugs Fixed
+
+## [0.1.2]
 
 * Added `pagePadding` parameter to `ScaffoldConfig`
 * Bugs Fixed

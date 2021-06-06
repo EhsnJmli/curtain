@@ -47,6 +47,15 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
   }
 
   @override
+  void didUpdateWidget(covariant CurtainSideBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.config != null) {
+      _config = widget.config!;
+      _width = _config.width;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
           final isLtr = widget.direction == TextDirection.ltr;
