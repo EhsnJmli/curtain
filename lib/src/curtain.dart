@@ -1,6 +1,7 @@
 import 'package:curtain/curtain.dart';
 import 'package:curtain/src/curtain_item.dart';
 import 'package:curtain/src/config.dart';
+import 'package:curtain/src/curtain_page_controller.dart';
 import 'package:curtain/src/side_bar/side_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class Curtain extends StatefulWidget {
     this.onPageChange,
     this.scaffoldConfig,
     this.direction,
+    this.controller,
   }) : assert(items.length > 0);
 
   /// Items of the curtain.
@@ -44,6 +46,9 @@ class Curtain extends StatefulWidget {
   /// If sets on null, it will get the directionality of its context.
   final TextDirection? direction;
 
+  /// An object that can be used to control the curtain page.
+  final CurtainPageController? controller;
+
   @override
   _CurtainState createState() => _CurtainState();
 }
@@ -60,6 +65,9 @@ class _CurtainState extends State<Curtain> {
     _curtainSideBarConfig =
         widget.curtainSideBarConfig ?? CurtainSideBarConfig();
     pageIndex = widget.initialPage;
+    if (widget.controller != null) {
+      widget.controller!.addListener(pageListener);
+    }
   }
 
   @override
@@ -70,6 +78,15 @@ class _CurtainState extends State<Curtain> {
     }
     if (widget.curtainSideBarConfig != null) {
       _curtainSideBarConfig = widget.curtainSideBarConfig!;
+    }
+    if (oldWidget.controller == null && widget.controller != null) {
+      widget.controller!.addListener(pageListener);
+    }
+  }
+
+  void pageListener() {
+    if (widget.controller!.page != pageIndex) {
+      changeIndex(widget.controller!.page);
     }
   }
 
@@ -89,7 +106,11 @@ class _CurtainState extends State<Curtain> {
       index: pageIndex,
       config: widget.curtainSideBarConfig,
       actions: widget.items.map((item) => item.action).toList(),
-      changeIndex: changeIndex,
+      changeIndex: widget.controller != null
+          ? (newIndex) {
+              widget.controller!.goToPage(newIndex);
+            }
+          : changeIndex,
     );
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -170,5 +191,13 @@ class _CurtainState extends State<Curtain> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    if (widget.controller != null) {
+      widget.controller!.removeListener(pageListener);
+    }
+    super.dispose();
   }
 }

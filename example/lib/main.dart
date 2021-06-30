@@ -25,6 +25,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  CurtainPageController curtainPageController = CurtainPageController();
+
   String getText(int page) {
     switch (page) {
       case 0:
@@ -78,71 +80,102 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+    curtainPageController.addListener(() {
+      print(curtainPageController.page);
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final pageTextStyle = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
     final headerTextStyle =
         TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
     final actionTextStyle = TextStyle(fontSize: 16);
     return Curtain(
-        extendBody: true,
-        initialPage: 1,
-        curtainSideBarConfig: CurtainSideBarConfig(
-          selectedActionXOffset: 10,
-          headerBuilder: (isExpand, page) => Container(
-            padding: const EdgeInsets.only(top: 32),
-            child: isExpand
-                ? Text(
-                    getHeaderText(page),
-                    style: headerTextStyle,
+      extendBody: true,
+      initialPage: 1,
+      controller: curtainPageController,
+      curtainSideBarConfig: CurtainSideBarConfig(
+        selectedActionXOffset: 10,
+        headerBuilder: (isExpand, page) => Container(
+          padding: const EdgeInsets.only(top: 32),
+          child: isExpand
+              ? Text(
+                  getHeaderText(page),
+                  style: headerTextStyle,
+                )
+              : Text(
+                  getShrinkHeaderText(page),
+                  style: headerTextStyle,
+                ),
+        ),
+      ),
+      scaffoldConfig: ScaffoldConfig(
+        drawerEdgeDragWidth: 50,
+        persistentWidget: PersistentWidget(
+          child: Container(
+            width: 250,
+            height: 150,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                  offset: Offset(-2, 2),
+                ),
+              ],
+            ),
+            alignment: Alignment.center,
+            child: Text('Persistent Widget'),
+          ),
+          alignment: Alignment.topRight,
+        ),
+      ),
+      items: List.generate(
+        3,
+        (page) => CurtainItem(
+          page: Container(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  getText(page),
+                  style: pageTextStyle,
+                ),
+                if (page == 0) ...[
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      curtainPageController.goToPage(2);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      padding: EdgeInsets.all(16),
+                    ),
+                    child: Text(
+                      'Go To Profile Page',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   )
-                : Text(
-                    getShrinkHeaderText(page),
-                    style: headerTextStyle,
-                  ),
+                ]
+              ],
+            ),
+          ),
+          action: CurtainAction(
+            icon: Icon(getIcon(page)),
+            text: Text(
+              getText(page),
+              style: actionTextStyle,
+            ),
           ),
         ),
-        scaffoldConfig: ScaffoldConfig(
-          drawerEdgeDragWidth: 50,
-          persistentWidget: PersistentWidget(
-            child: Container(
-              width: 250,
-              height: 150,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    offset: Offset(-2, 2),
-                  ),
-                ],
-              ),
-              alignment: Alignment.center,
-              child: Text('Persistent Widget'),
-            ),
-            alignment: Alignment.topRight,
-          ),
-        ),
-        items: List.generate(
-          3,
-          (page) => CurtainItem(
-            page: Container(
-              alignment: Alignment.center,
-              child: Text(
-                getText(page),
-                style: pageTextStyle,
-              ),
-            ),
-            action: CurtainAction(
-              icon: Icon(getIcon(page)),
-              text: Text(
-                getText(page),
-                style: actionTextStyle,
-              ),
-            ),
-          ),
-        ));
+      ),
+    );
   }
 }

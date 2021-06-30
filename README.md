@@ -13,3 +13,4 @@ A flutter dynamic responsive dashboard, easy to use and completely customizable.
 | void Function(int page)? | onPageChange | Function which called when page changes. | `null` |
 | ScaffoldConfig? | scaffoldConfig | Config of the main page scaffold. | `null` |
 | TextDirection? | direction | Direction of the page. | `null` |
+| CurtainPageController? | controller | An object that can be used to control the curtain page | `null` |
