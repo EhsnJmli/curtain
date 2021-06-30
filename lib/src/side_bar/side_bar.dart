@@ -136,8 +136,8 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                                     sideBarConfig: _config,
                                     isSelected: widget.index == index,
                                     onClick: () {
-                                      widget.changeIndex(index);
                                       if (isTablet) Navigator.pop(context);
+                                      widget.changeIndex(index);
                                     },
                                   );
                                 }).space(_config.actionsSpacing, Axis.vertical),
