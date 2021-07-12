@@ -123,7 +123,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                                 minHeight: innerConstraints.maxHeight,
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: _config.mainAxisAlignment,
                                 mainAxisSize: MainAxisSize.min,
                                 children: List.generate(widget.actions.length,
                                     (index) {
