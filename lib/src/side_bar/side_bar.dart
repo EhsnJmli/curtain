@@ -106,6 +106,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                       ),
                     ),
                   Column(
+                    crossAxisAlignment: _config.crossAxisAlignment,
                     children: [
                       if (_config.headerBuilder != null)
                         Padding(
