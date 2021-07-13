@@ -1,8 +1,10 @@
 # [0.2.1]
 
-- Added `mainAxisAlignment` parameter for SideBar config.
+- Added `mainAxisAlignment` parameter to `CurtainSideBarConfig`
+- Added `crossAxisAlignment` parameter to `CurtainSideBarConfig`
+- Added hover effect for sideBar actions
 
-# [0.2.0]
+## [0.2.0]
 
 - Added `controller` parameter
 
