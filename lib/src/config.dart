@@ -18,6 +18,8 @@ class CurtainSideBarConfig {
     this.actionsSelectedBackgroundColor = Colors.green,
     this.actionsSpacing = 15,
     this.selectedActionXOffset = 10,
+    this.mainAxisAlignment = MainAxisAlignment.end,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
   }) : assert(expandWidth > width, 'expandWidth should be greater than width');
 
   /// Default width of [CurtainSideBar] when its not hovered.
@@ -35,6 +37,16 @@ class CurtainSideBarConfig {
   ///
   /// defaults to [_kSideBarDuration].
   final Duration duration;
+
+  /// Main Axis Alignment of items inside [CurtainSideBar].
+  ///
+  /// defaults to [MainAxisAlignment.end].
+  final MainAxisAlignment mainAxisAlignment;
+
+  /// Cross Axis Alignment of items inside [CurtainSideBar].
+  ///
+  /// defaults to [MainAxisAlignment.end].
+  final CrossAxisAlignment crossAxisAlignment;
 
   /// Builds header for the [CurtainSideBar].
   final Widget Function(bool isExpand, int page)? headerBuilder;

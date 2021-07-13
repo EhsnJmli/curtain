@@ -106,6 +106,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                       ),
                     ),
                   Column(
+                    crossAxisAlignment: _config.crossAxisAlignment,
                     children: [
                       if (_config.headerBuilder != null)
                         Padding(
@@ -123,7 +124,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                                 minHeight: innerConstraints.maxHeight,
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: _config.mainAxisAlignment,
                                 mainAxisSize: MainAxisSize.min,
                                 children: List.generate(widget.actions.length,
                                     (index) {
@@ -156,7 +157,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
       );
 }
 
-class _SideBarActionWidget extends StatelessWidget {
+class _SideBarActionWidget extends StatefulWidget {
   const _SideBarActionWidget({
     required this.item,
     required this.onClick,
@@ -178,21 +179,32 @@ class _SideBarActionWidget extends StatelessWidget {
   final TextDirection direction;
 
   @override
+  __SideBarActionWidgetState createState() => __SideBarActionWidgetState();
+}
+
+class __SideBarActionWidgetState extends State<_SideBarActionWidget> {
+  bool _isHovering = false;
+
+  @override
   Widget build(BuildContext context) {
-    final isLtr = direction == TextDirection.ltr;
-    final givenText = item.text;
-    final givenIcon = item.icon;
+    final isLtr = widget.direction == TextDirection.ltr;
+    final givenText = widget.item.text;
+    final givenIcon = widget.item.icon;
     var textStyle = givenText.style;
     textStyle = textStyle == null
         ? TextStyle(
-            color: isSelected
-                ? item.selectedColor ?? sideBarConfig.actionsBackgroundColor
-                : item.color ?? sideBarConfig.actionsSelectedBackgroundColor,
+            color: widget.isSelected
+                ? widget.item.selectedColor ??
+                    widget.sideBarConfig.actionsBackgroundColor
+                : widget.item.color ??
+                    widget.sideBarConfig.actionsSelectedBackgroundColor,
           )
         : textStyle.copyWith(
-            color: isSelected
-                ? item.selectedColor ?? sideBarConfig.actionsBackgroundColor
-                : item.color ?? sideBarConfig.actionsSelectedBackgroundColor,
+            color: widget.isSelected
+                ? widget.item.selectedColor ??
+                    widget.sideBarConfig.actionsBackgroundColor
+                : widget.item.color ??
+                    widget.sideBarConfig.actionsSelectedBackgroundColor,
           );
     final text = Text(
       givenText.data!,
@@ -214,34 +226,46 @@ class _SideBarActionWidget extends StatelessWidget {
       givenIcon.icon,
       key: givenIcon.key,
       textDirection: givenIcon.textDirection,
-      color: isSelected
-          ? item.selectedColor ?? sideBarConfig.actionsBackgroundColor
-          : item.color ?? sideBarConfig.actionsSelectedBackgroundColor,
+      color: widget.isSelected
+          ? widget.item.selectedColor ??
+              widget.sideBarConfig.actionsBackgroundColor
+          : widget.item.color ??
+              widget.sideBarConfig.actionsSelectedBackgroundColor,
       size: givenIcon.size,
       semanticLabel: givenIcon.semanticLabel,
     );
     final iconSize = givenIcon.size ?? IconTheme.of(context).size!;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
+      onEnter: (_) {
+        setState(() {
+          _isHovering = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          _isHovering = false;
+        });
+      },
       child: GestureDetector(
-        onTap: onClick,
+        onTap: widget.onClick,
         child: Container(
-          height: item.height,
+          height: widget.item.height,
           margin: EdgeInsets.only(
             right: isLtr
-                ? (isTablet || isSelected
+                ? (widget.isTablet || widget.isSelected
                     ? 0
-                    : sideBarConfig.selectedActionXOffset)
+                    : widget.sideBarConfig.selectedActionXOffset)
                 : 0,
             left: isLtr
                 ? 0
-                : (isTablet || isSelected
+                : (widget.isTablet || widget.isSelected
                     ? 0
-                    : sideBarConfig.selectedActionXOffset),
+                    : widget.sideBarConfig.selectedActionXOffset),
           ),
           decoration: BoxDecoration(
-            borderRadius: !isTablet && isSelected
-                ? item.borderRadius ??
+            borderRadius: !widget.isTablet && widget.isSelected
+                ? widget.item.borderRadius ??
                     BorderRadius.only(
                       bottomLeft: isLtr ? Radius.zero : Radius.circular(6),
                       topLeft: isLtr ? Radius.zero : Radius.circular(6),
@@ -249,39 +273,44 @@ class _SideBarActionWidget extends StatelessWidget {
                       bottomRight: isLtr ? Radius.circular(6) : Radius.zero,
                     )
                 : BorderRadius.zero,
-            color: isSelected
-                ? sideBarConfig.actionsSelectedBackgroundColor
-                : sideBarConfig.actionsBackgroundColor,
+            color: widget.isSelected
+                ? widget.sideBarConfig.actionsSelectedBackgroundColor
+                : _isHovering
+                    ? widget.sideBarConfig.actionsSelectedBackgroundColor
+                        .withOpacity(0.2)
+                    : widget.sideBarConfig.actionsBackgroundColor,
           ),
           child: AnimatedContainer(
-            duration: sideBarConfig.duration,
-            height: item.height,
+            duration: widget.sideBarConfig.duration,
+            height: widget.item.height,
             child: Row(
               children: [
                 SizedBox(
-                  width: (sideBarConfig.width -
-                          (isSelected
+                  width: (widget.sideBarConfig.width -
+                          (widget.isSelected
                               ? 0
-                              : sideBarConfig.selectedActionXOffset) -
+                              : widget.sideBarConfig.selectedActionXOffset) -
                           iconSize) /
                       2,
                 ),
                 icon,
                 SizedBox(
-                  width: (sideBarConfig.width -
-                          (isSelected
+                  width: (widget.sideBarConfig.width -
+                          (widget.isSelected
                               ? 0
-                              : sideBarConfig.selectedActionXOffset) -
+                              : widget.sideBarConfig.selectedActionXOffset) -
                           iconSize) /
                       2,
                 ),
                 Expanded(
                   child: AnimatedOpacity(
-                    opacity: isExpand ? 1 : 0,
+                    opacity: widget.isExpand ? 1 : 0,
                     duration: Duration(
-                      milliseconds: sideBarConfig.duration.inMilliseconds > 100
-                          ? sideBarConfig.duration.inMilliseconds - 100
-                          : sideBarConfig.duration.inMilliseconds,
+                      milliseconds:
+                          widget.sideBarConfig.duration.inMilliseconds > 100
+                              ? widget.sideBarConfig.duration.inMilliseconds -
+                                  100
+                              : widget.sideBarConfig.duration.inMilliseconds,
                     ),
                     child: text,
                   ),
