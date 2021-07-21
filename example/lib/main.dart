@@ -25,7 +25,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CurtainPageController curtainPageController = CurtainPageController();
+  CurtainPageController curtainPageController =
+      CurtainPageController(initialPage: 1);
 
   String getText(int page) {
     switch (page) {
@@ -82,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     curtainPageController.addListener(() {
+      print(curtainPageController.previousPage);
       print(curtainPageController.page);
     });
     super.initState();
@@ -95,7 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
     final actionTextStyle = TextStyle(fontSize: 16);
     return Curtain(
       extendBody: true,
-      initialPage: 1,
       controller: curtainPageController,
       curtainSideBarConfig: CurtainSideBarConfig(
         selectedActionXOffset: 10,

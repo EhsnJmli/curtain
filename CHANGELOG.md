@@ -1,4 +1,10 @@
-# [0.2.1]
+# [0.3.0]
+
+- Removed `initialPage` parameter
+- Added `initialPage` parameter to `CurtainPageController`
+- Added `previousPage` parameter to `CurtainPageController`
+
+## [0.2.1]
 
 - Added `mainAxisAlignment` parameter to `CurtainSideBarConfig`
 - Added `crossAxisAlignment` parameter to `CurtainSideBarConfig`

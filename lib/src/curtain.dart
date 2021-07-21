@@ -9,7 +9,6 @@ class Curtain extends StatefulWidget {
   const Curtain({
     required this.items,
     this.curtainSideBarConfig,
-    this.initialPage = 0,
     this.extendBody = false,
     this.onPageChange,
     this.scaffoldConfig,
@@ -24,9 +23,6 @@ class Curtain extends StatefulWidget {
 
   /// Config of the [CurtainSideBar].
   final CurtainSideBarConfig? curtainSideBarConfig;
-
-  /// Initial page of the curtain.
-  final int initialPage;
 
   /// If true, page will be extend under the edge of the selected action if its not zero.
   ///
@@ -64,7 +60,7 @@ class _CurtainState extends State<Curtain> {
     _config = widget.scaffoldConfig ?? ScaffoldConfig();
     _curtainSideBarConfig =
         widget.curtainSideBarConfig ?? CurtainSideBarConfig();
-    pageIndex = widget.initialPage;
+    pageIndex = widget.controller != null ? widget.controller!.initialPage : 0;
     if (widget.controller != null) {
       widget.controller!.addListener(pageListener);
     }
@@ -85,6 +81,10 @@ class _CurtainState extends State<Curtain> {
   }
 
   void pageListener() {
+    assert(
+        widget.controller!.page < widget.items.length &&
+            widget.controller!.page >= 0,
+        "Page is not in range!");
     if (widget.controller!.page != pageIndex) {
       changeIndex(widget.controller!.page);
     }
