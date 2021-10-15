@@ -13,6 +13,7 @@ class CurtainSideBarConfig {
     this.expandWidth = _kSideBarExpandWidth,
     this.duration = _kSideBarDuration,
     this.headerBuilder,
+    this.footerBuilder,
     this.backgroundColor = Colors.white,
     this.actionsBackgroundColor = Colors.white,
     this.actionsSelectedBackgroundColor = Colors.green,
@@ -50,6 +51,9 @@ class CurtainSideBarConfig {
 
   /// Builds header for the [CurtainSideBar].
   final Widget Function(bool isExpand, int page)? headerBuilder;
+
+  /// Builds footer for the [CurtainSideBar].
+  final Widget Function(bool isExpand, int page)? footerBuilder;
 
   /// [CurtainSideBar] background color.
   ///

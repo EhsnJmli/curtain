@@ -147,6 +147,13 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                           ),
                         ),
                       ),
+                      if (_config.footerBuilder != null)
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: isLtr ? 0 : _config.selectedActionXOffset,
+                              right: isLtr ? _config.selectedActionXOffset : 0),
+                          child: _config.footerBuilder!(isExpand, widget.index),
+                        ),
                     ],
                   ),
                 ],
