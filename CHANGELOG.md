@@ -1,3 +1,7 @@
+# [0.3.1]
+
+- Added `footerBuilder` parameter to `CurtainSideBarConfig`
+
 # [0.3.0]
 
 - Removed `initialPage` parameter

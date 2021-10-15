@@ -80,6 +80,32 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  String getFooterText(int page) {
+    switch (page) {
+      case 0:
+        return 'Home Page Footer';
+      case 1:
+        return 'Map Page Footer';
+      case 2:
+        return 'Profile Page Footer';
+      default:
+        return 'Not defined';
+    }
+  }
+
+  String getShrinkFooterText(int page) {
+    switch (page) {
+      case 0:
+        return 'Home';
+      case 1:
+        return 'Map';
+      case 2:
+        return 'Profile';
+      default:
+        return 'Not defined';
+    }
+  }
+
   @override
   void initState() {
     curtainPageController.addListener(() {
@@ -109,6 +135,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               : Text(
                   getShrinkHeaderText(page),
+                  style: headerTextStyle,
+                ),
+        ),
+        footerBuilder: (isExpand, page) => Container(
+          padding: const EdgeInsets.only(bottom: 32),
+          child: isExpand
+              ? Text(
+                  getFooterText(page),
+                  style: headerTextStyle,
+                )
+              : Text(
+                  getShrinkFooterText(page),
                   style: headerTextStyle,
                 ),
         ),
