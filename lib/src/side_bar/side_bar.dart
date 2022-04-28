@@ -1,10 +1,6 @@
-import 'dart:ui';
-
 import 'package:curtain/src/config.dart';
 import 'package:curtain/src/side_bar/action.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import '../utils/extensions.dart';
 
 class CurtainSideBar extends StatefulWidget {

@@ -1,7 +1,4 @@
 import 'package:curtain/curtain.dart';
-import 'package:curtain/src/curtain_item.dart';
-import 'package:curtain/src/config.dart';
-import 'package:curtain/src/curtain_page_controller.dart';
 import 'package:curtain/src/side_bar/side_bar.dart';
 import 'package:flutter/material.dart';
 

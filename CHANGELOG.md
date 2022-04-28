@@ -1,8 +1,12 @@
-# [0.3.1]
+# [0.3.2]
+
+- Fixed issues from flutter static analysis
+
+## [0.3.1]
 
 - Added `footerBuilder` parameter to `CurtainSideBarConfig`
 
-# [0.3.0]
+## [0.3.0]
 
 - Removed `initialPage` parameter
 - Added `initialPage` parameter to `CurtainPageController`
