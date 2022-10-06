@@ -36,6 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return 'Map Page';
       case 2:
         return 'Profile Page';
+      case 3:
+        return 'Exit';
       default:
         return 'Not defined';
     }
@@ -49,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return Icons.map;
       case 2:
         return Icons.person;
+      case 3:
+        return Icons.logout;
       default:
         return Icons.home;
     }
@@ -176,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       items: List.generate(
-        3,
+        4,
         (page) => CurtainItem(
           page: Container(
             alignment: Alignment.center,
@@ -207,12 +211,50 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           action: CurtainAction(
-            icon: Icon(getIcon(page)),
-            text: Text(
-              getText(page),
-              style: actionTextStyle,
-            ),
-          ),
+              icon: Icon(getIcon(page)),
+              text: Text(
+                getText(page),
+                style: actionTextStyle,
+              ),
+              onTap: page == 3
+                  ? () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => SimpleDialog(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 16),
+                              child: Text(
+                                'Are you really want to exit?',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Row(
+                                children: [
+                                  TextButton(
+                                    child: Text('YES'),
+                                    onPressed: () => Navigator.pop(context),
+                                  ),
+                                  TextButton(
+                                    child: Text('No'),
+                                    onPressed: () => Navigator.pop(context),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                          title: Text(
+                            'Exit',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      );
+                    }
+                  : null),
         ),
       ),
     );

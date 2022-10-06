@@ -1,4 +1,8 @@
-# [0.3.2]
+# [0.3.3]
+
+- Added `onTap` parameter to `CurtainAction`
+
+## [0.3.2]
 
 - Fixed issues from flutter static analysis
 

@@ -10,6 +10,7 @@ class CurtainAction {
     this.selectedColor,
     this.height = 50,
     this.borderRadius,
+    this.onTap,
   });
 
   /// Displayed icon of the action.
@@ -38,4 +39,9 @@ class CurtainAction {
 
   /// BorderRadius of the action button in the [CurtainSideBar].
   final BorderRadius? borderRadius;
+
+  /// onTap function for curtain item.
+  ///
+  /// If sets on null, it will do the change index by taping on it.
+  final VoidCallback? onTap;
 }

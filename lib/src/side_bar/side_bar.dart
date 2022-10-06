@@ -59,7 +59,7 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
           if (isTablet) _width = _config.expandWidth;
           final isExpand = isTablet || _width == _config.expandWidth;
           return MouseRegion(
-            cursor: SystemMouseCursors.click,
+            cursor: SystemMouseCursors.basic,
             onEnter: !isTablet
                 ? (p) {
                     setState(() {
@@ -132,10 +132,11 @@ class _CurtainSideBarState extends State<CurtainSideBar> {
                                     isExpand: isExpand,
                                     sideBarConfig: _config,
                                     isSelected: widget.index == index,
-                                    onClick: () {
-                                      if (isTablet) Navigator.pop(context);
-                                      widget.changeIndex(index);
-                                    },
+                                    onClick: widget.actions[index].onTap ??
+                                        () {
+                                          if (isTablet) Navigator.pop(context);
+                                          widget.changeIndex(index);
+                                        },
                                   );
                                 }).space(_config.actionsSpacing, Axis.vertical),
                               ),
